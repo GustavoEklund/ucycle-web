@@ -6,6 +6,7 @@ type Props = {
   children: React.ReactNode
   icon: React.ReactElement<any, string | React.JSXElementConstructor<any>>
   href: string
+  onClick?: () => void
 }
 
 export const MenuItem: React.FC<Props> = (props) => {
@@ -25,6 +26,7 @@ export const MenuItem: React.FC<Props> = (props) => {
           borderRadius={0}
           rightIcon={props.icon}
           justifyContent="space-between"
+          onClick={props.onClick}
         >
           {props.children}
         </Button>
