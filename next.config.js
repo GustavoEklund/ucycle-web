@@ -1,10 +1,16 @@
+const withTM = require('next-transpile-modules')(['@mercadopago/sdk-react'])
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+})
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = withTM(withPWA({
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['d15tp84buh2rvk.cloudfront.net']
+    domains: ['localhost']
   }
-}
+}))
 
 module.exports = nextConfig

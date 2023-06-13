@@ -5,8 +5,15 @@ import { JWT } from 'next-auth/jwt'
 
 declare module 'next-auth/jwt' {
   interface JWT {
-    id_token?: string;
-    provider?: string;
+    id_token?: string
+    provider?: string
+    accessToken?: string
+  }
+}
+
+declare module 'next-auth' {
+  interface Session {
+    accessToken?: string
   }
 }
 
@@ -23,8 +30,13 @@ export const authOptions: AuthOptions = {
       if (account) {
         token.id_token = account.id_token
         token.provider = account.provider
+        token.accessToken = account.access_token
       }
       return token
+    },
+    async session({ session, token }) {
+      session.accessToken = token.accessToken
+      return session
     },
   },
   events: {

@@ -16,11 +16,14 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
+      "@/domain/*": ["domain/*"],
       "@/pages/*": ["pages/*"],
       "@/public/*": ["public/*"],
       "@/styles/*": ["styles/*"],
       "@/sections/*": ["sections/*"],
       "@/components/*": ["components/*"],
+      "@/contexts/*": ["contexts/*"],
+      "@/hooks/*": ["hooks/*"],
     }
   },
   "include": [
@@ -30,3 +33,4 @@
   ],
   "exclude": ["node_modules"]
 }
+

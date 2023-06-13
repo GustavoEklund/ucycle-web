@@ -16,32 +16,57 @@ export const ProductSlideshow: React.FC<Props> = (props) => {
 
   return (
     <Box width="full">
-      <Slide
-        indicators={(index) => (
-          <Box
-            className="indicator"
-            width={3}
-            height={3}
-            marginX={2}
-            borderRadius="full"
-            borderColor={colors.borderColor}
-            borderWidth={1}
-            borderStyle="solid"
+      {props.images.length === 1 ? (
+        <Flex
+          height={420}
+          justifyContent="center"
+          position="relative"
+          width="full"
+        >
+          <Image
+            src={props.images[0].url}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            alt={props.images[0].caption}
           />
-        )}
-      >
-        {props.images.map((image, index) => (
-          <Flex width="full" justifyContent="center" key={index}>
-            <Image
-              key={index}
-              src={image.url}
-              width={370}
-              height={500}
-              alt={image.caption}
+        </Flex>
+      ) : (
+        <Slide
+          transitionDuration={150}
+          indicators={(index) => (
+            <Box
+              className="indicator"
+              width={3}
+              height={3}
+              marginX={2}
+              borderRadius="full"
+              borderColor={colors.borderColor}
+              borderWidth={1}
+              borderStyle="solid"
             />
-          </Flex>
-        ))}
-      </Slide>
+          )}
+        >
+          {props.images.map((image, index) => (
+            <Flex
+              key={index}
+              height={500}
+              justifyContent="center"
+              position="relative"
+              width="full"
+            >
+              <Image
+                key={index}
+                src={image.url}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+                alt={image.caption}
+              />
+            </Flex>
+          ))}
+        </Slide>
+      )}
     </Box>
   )
 }
